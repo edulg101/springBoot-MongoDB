@@ -49,6 +49,16 @@ public class UserResource {
         return ResponseEntity.noContent().build();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> update(@RequestBody UserDTO objDTO, @PathVariable String id ) {  // ResponseEntity for encapsulation.
+        User obj =service.fromDTO(objDTO);
+        obj.setId(id);
+        obj = service.update(obj);
+        // codigo abaixo para retornar cod 204:
+        return ResponseEntity.noContent().build();
+
+    }
+
 
 
 

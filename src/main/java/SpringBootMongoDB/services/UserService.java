@@ -42,6 +42,15 @@ public class UserService {
         return new User(objDTO.getId(),objDTO.getName(),objDTO.getEmail());
     }
 
+    public User update(User obj) {
+        User newObj = findById(obj.getId()); // chama objeto do BD.
+        updateData(newObj, obj); // chama metodo para alterar dados
+        return repo.save(newObj);
+    }
 
+    private void updateData(User newObj, User obj) {
+        newObj.setName(obj.getName()) ;
+        newObj.setEmail(obj.getEmail()) ;
+    }
 
 }
