@@ -5,6 +5,7 @@ import SpringBootMongoDB.dto.UserDTO;
 import SpringBootMongoDB.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,12 @@ public class UserResource {
         List<User> usersList = service.findAll();
         List<UserDTO> usersDTOList = usersList.stream().map(x-> new UserDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(usersDTOList);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<UserDTO> findById(@PathVariable String id) {  // ResponseEntity for encapsulation.
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(new UserDTO(obj));
     }
 
 
