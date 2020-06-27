@@ -2,6 +2,7 @@ package SpringBootMongoDB.config;
 
 import SpringBootMongoDB.domain.Post;
 import SpringBootMongoDB.domain.User;
+import SpringBootMongoDB.dto.AuthorDTO;
 import SpringBootMongoDB.repository.PostRepository;
 import SpringBootMongoDB.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,8 @@ public class Instantiation implements CommandLineRunner {
 
         postRepository.deleteAll();
 
-        Post post1 = new Post(null,sdf.parse("21/03/2018"), "pariu viagem", "Vou viajar para SP", maria);
-        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acorde Feliz hoje", maria);
+        Post post1 = new Post(null,sdf.parse("21/03/2018"), "pariu viagem", "Vou viajar para SP", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acorde Feliz hoje", new AuthorDTO(maria));
 
         postRepository.saveAll(Arrays.asList(post1,post2));
 
