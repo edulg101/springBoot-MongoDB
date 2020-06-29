@@ -35,4 +35,23 @@ public class PostResource {
 //    para Pesquisar no postman:
 //    http://localhost:8080/posts/titlesearch?text=expressão que presente buscar.
 
+
+    @RequestMapping(value = "/fullsearch", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> fullSearch(
+            @RequestParam(value="text", defaultValue="") String text,
+            @RequestParam(value="minDate", defaultValue="") String minDate,
+            @RequestParam(value="maxDate", defaultValue="") String maxDate){
+
+        text = URL.decodeParam(text);
+        Date min = URL.convertData(minDate, new Date(0L));
+        Date max = URL.convertData(maxDate, new Date());
+
+        List<Post> posts = service.fullSearch(text, min, max);
+        return ResponseEntity.ok().body(posts);
+
+       // exemplo de search:
+        // http://localhost:8080/posts/fullsearch?text=bom&maxDate=2018-03-23
+
+    }
+
 }
