@@ -32,5 +32,7 @@ public class PostResource {
         List<Post> list = service.findByTitle(text);
         return ResponseEntity.ok().body(list);
     }
+//    para Pesquisar no postman:
+//    http://localhost:8080/posts/titlesearch?text=expressão que presente buscar.
 
 }

@@ -23,8 +23,13 @@ public class PostService {
     }
 
 
-    public List<Post> findByTitle (String text){
-        return repo.findByTitleContainingIgnoreCase(text);
-    }
+//    public List<Post> findByTitle (String text){
+//        return repo.findByTitleContainingIgnoreCase(text);
+//    }
+//    esse de cima para usar o metodo pronto do spring
 
+    public List<Post> findByTitle (String text){
+        return repo.searchTitle(text);
+    }
+// esse para usar o query do mongoDB
 }
