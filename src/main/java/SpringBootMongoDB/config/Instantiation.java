@@ -41,22 +41,25 @@ public class Instantiation implements CommandLineRunner {
 
         postRepository.deleteAll();
 
-        Post post1 = new Post(null,sdf.parse("21/03/2018"), "pariu viagem", "Vou viajar para SP", new AuthorDTO(maria));
-        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acorde Feliz hoje", new AuthorDTO(maria));
+        Post post1 = new Post(null,sdf.parse("21/03/2018"), "partiu viagem", "Vou viajar para SP", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei Feliz hoje", new AuthorDTO(maria));
+        Post post3 = new Post(null, sdf.parse("23/03/2018"), "Bom dia Teste", "mais um post", new AuthorDTO(alex));
+
 
         CommentDTO com1 = new CommentDTO("Boa Viagem Mano", sdf.parse("21/03/2018"), new AuthorDTO(alex));
         CommentDTO com2 = new CommentDTO("Aproveite", sdf.parse("22/03/2018"), new AuthorDTO(bob));
         CommentDTO com3 = new CommentDTO("Tenha um otimo dia", sdf.parse("23/03/2018"), new AuthorDTO(alex));
 
+
         post1.getComments().addAll(Arrays.asList(com1,com2));
-        post2.getComments().addAll(Arrays.asList(com2));
 
-        postRepository.saveAll(Arrays.asList(post1,post2));
+        postRepository.saveAll(Arrays.asList(post1,post2,post3));
 
-        maria.getPosts().addAll(Arrays.asList(post1,post2));
+       // maria.getPosts().addAll(Arrays.asList(post1,post2));
+
+      //  alex.getPosts().add(post3);
 
         userRepository.save(maria);
-
     }
 
 
